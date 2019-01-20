@@ -1,0 +1,61 @@
+#include<fstream.h>
+#include<stdio.h>
+#include<process.h>
+#include<conio.h>
+
+
+void main()
+{ clrscr();
+  int n,j;
+  fstream fin,fout;
+  char str[100];
+  char ch,ch1;
+  do
+  {
+     cout<<"\n\t1.ENTER TEXT \n\t2.SHOW \n\t3.EXIT\n";
+     cin>>ch;
+     switch(ch)
+     {
+
+       case '1':fout.open("smp.txt",ios::out|ios::app);
+		cout<<"enter text:";
+	              gets(str);
+		fout<<str;
+		fout.close();
+		char tmp[20];
+		fin.open("smp.txt",ios::in);
+		fout.open("vwl.txt",ios::out|ios::app);
+		while(!fin.eof())
+		{
+		  fin.getline(tmp,20,' ');
+		  if(tmp[0]=='a'||tmp[0]=='e'||tmp[0]=='i'||tmp[0]=='o'||tmp[0]=='u'||tmp[0]=='A'||tmp[0]=='E'||tmp[0]=='I'||tmp[0]=='O'||tmp[0]=='U')
+		  {
+		      fout<<tmp;
+		      fout<<' ';
+		      }
+		      }
+		      fin.close();
+		      fout.close();
+		      break;
+     case '2': cout<<"\nWORDS STARTING WITH VOWELS\n";
+		fin.open("vwl.txt",ios::in);
+		while(fin)
+		{
+		   fin.get(ch);
+		   cout<<ch;
+		   
+}
+		   fin.close();
+		   
+break;
+     case '3':exit(0);
+	}
+	cout<<"\n do u continue:";
+	cin>>ch1;
+	}while(ch1=='y'||ch1=='Y');
+	getch();
+	}
+
+
+
+
