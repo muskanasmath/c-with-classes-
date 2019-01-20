@@ -1,0 +1,66 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<fstream.h>                              
+                            
+                            
+                            
+class person{
+		int code;
+		char name[10];
+		public:
+		void read()
+		{	cout<<"Enter code and name"<<endl;
+			cin>>code>>name;
+		}
+		void display()
+		{	cout<<"\n"<<code<<"\n"<<name;
+		}
+	    };
+class account: virtual public person
+	    {
+		int pay;
+		public:
+		void read_acc()
+		{cout<<"Enter amount:";
+		cin>>pay;
+		}
+		void disp()
+		{cout<<pay;
+		}
+	    };
+class admin:virtual public person
+	    {
+		int exp;
+		public:
+		void read_admin()
+		{cout<<"Enter experince";
+		cin>>exp;
+		}
+		void dis()
+    {cout<<exp;}  
+    };
+
+class master:public account,public admin
+	    {
+		public:
+		void mast()
+		{read();
+		 read_acc();
+		 read_admin();
+		}
+		void mas()
+		{display();
+		 disp(); dis();
+		}
+	    };
+void main()
+{clrscr();
+ master m;
+ m.mast();
+ m.mas();
+ getch();
+}
+
+
+
