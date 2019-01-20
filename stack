@@ -1,0 +1,91 @@
+
+struct node
+ {
+   char city[20];
+   int pin;
+   node*next;
+ };
+
+class stack
+ {
+   node*top;
+    public:
+   stack()
+    {
+     top=NULL;
+    }
+  void push();
+  void pop();
+  void display();
+ };
+void stack::push()
+ {
+  node*ptr=new node;
+  node*save;
+  cout<<"Enter city \n";
+  gets(ptr->city);
+  cout<<"Enter pincode \n";
+  cin>>ptr->pin;
+  ptr->next=NULL;
+   if(top==NULL)
+     top=ptr;
+   else
+     {
+      save=top;
+      top=ptr;
+      ptr->next=save;
+     }
+  }
+
+ void stack::pop()
+  {
+    node*ptr;
+   if(top==NULL)
+    cout<<"Underflow";
+   else
+    {
+    cout<<top->city<<" - "<<top->pin<<" is deleted \n";
+    ptr=top;
+    top=top->next;
+    delete ptr;
+    }
+  }
+
+ void stack::display()
+  {
+    node*ptr=top;
+    cout<<"Now the list is \n";
+     while(ptr!=NULL)
+      {
+       cout<<ptr->city<<"-"<<ptr->pin;
+       cout<<endl;
+       ptr=ptr->next;
+      }
+  }
+void main()
+{
+ clrscr();
+   stack s;
+   int choice;
+   while(1)
+    {
+     cout<<"\n\nMain Menu \n1.Push\n2.Pop\n3.Display\n4.Exit\n";
+     cout<<"Enter your choice\n";
+     cin>>choice;
+     switch(choice)
+       {
+       case 1:s.push();
+	      break;
+       case 2:s.pop();
+	      break;
+       case 3:s.display();
+	      break;
+       case 4:exit(0);
+	      break;
+       default:
+	      cout<<"Wrong Input";
+       getch();
+       }
+    }
+}
+
