@@ -1,0 +1,80 @@
+/*Travel Management using classes and object
+  Fare for each adult is charged according to the distance travelled.
+  For children, 50% of the same fare is charged for the distance travelled.*/
+
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<fstream.h>
+                  
+
+ class Travel{
+		char T_code[10];
+		
+                             int No_of_Adults;
+		int No_of_Children;
+
+		int Distance;
+		float Totalfare;
+		public:
+		Travel()
+		{strcpy(T_code,"NULL");
+		 No_of_Adults=0;
+		 No_of_Children=0;
+		 Distance=0;
+		 Totalfare=0;
+		}
+		
+	void EnterTour();
+		
+	void Showtravel()
+	{cout<<"Travel code="<<T_code;
+	cout<<"\nNo. of adults="<<No_of_Adults;
+	cout<<"\nNo.of children="<<No_of_Children;
+	cout<<"\nDistance to be travelled="<<Distance;
+	cout<<"\nTotal fare="<<Totalfare;
+	}
+	float Assignfare();
+	};                  //class_end
+
+float Travel::Assignfare()
+	{      
+	float fare;
+	if(Distance>=1000)
+	fare=(No_of_Adults*500)+(No_of_Children*250);
+	
+	else if(Distance<1000||Distance>=500)
+	fare=(No_of_Adults*300)+(No_of_Children*150);
+
+	else
+	fare=(No_of_Adults*200)+(No_of_Children*100);
+	
+	Totalfare=fare;
+	return Totalfare;
+	}
+
+void Travel::EnterTour()
+	{	
+	cout<<"\nEnter travel code:";
+	cin>>T_code;
+	cout<<"\nEnter no. of adults:";
+	cin>>No_of_Adults;
+	cout<<"\nEnter no. of children:";
+	cin>>No_of_Children;
+	cout<<"\nEnter distance to be travelled:";
+	cin>>Distance;
+	Assignfare();
+	}
+
+
+void main()
+	{
+ 	clrscr();
+ 	Travel t;
+ 	t.EnterTour();
+ 	t.Showtravel();
+	getch();
+	}	
+
+
+
