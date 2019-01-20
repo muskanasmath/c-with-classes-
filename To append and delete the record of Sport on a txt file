@@ -1,0 +1,96 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<fstream.h>
+
+                    class sports{
+		char name[30];
+		int sno;
+		float fees;
+		public:
+		void input()
+		{cout<<"Enter name:";
+		 cin>>name;
+		
+ cout<<"\nEnter ports number:";
+		 
+ 		cin>>sno;
+		 cout<<"\nEnter fees:";
+		 cin>>fees;
+		
+                            }
+		void display()
+		{cout<<"name: "<<name;
+		 cout<<"\nsports number: "<<sno;
+		 cout<<"\nfees: "<<fees;
+		}
+		int getsno()
+		{
+			return sno;
+		}
+};
+void main()
+{clrscr();
+ sports s;
+ int n,i,j;
+ fstream ofile,afile;
+ char ch1;
+ int ch;
+ do{cout<<"\n1.add records";
+    cout<<"\n2.delete file";
+    cout<<"\n3.exit";
+    cout<<"\nEnter choice:";
+    cin>>ch;
+
+    switch(ch)
+    {		case 1:ofile.open("sports.dat",ios::out|ios::app|ios::binary);
+		       cout<<"enter number of records to be entered:";
+		    
+                                         cin>>n;
+		       for(i=0;i<n;i++)
+		       {s.input();
+			ofile.write((char*)&s,sizeof(sports));
+		       }
+		       ofile.close();
+		       break;
+		case 2:cout<<"\nenter sports number to be deleted";
+		       int sn1,flag1=0;
+		       cin>>sn1;
+		       afile.open("sports.dat",ios::in|ios::binary);
+		       ofile.open("tsport.dat",ios::out|ios::binary);
+		       while(afile)
+		       {
+				afile.read((char*)&s,sizeof(sports));
+				if(!afile)
+					break;
+				if(sn1==s.getsno())
+				{
+					flag1=1;}
+                                                    else
+				{
+				       ofile.write((char*)&s,sizeof(sports));  }
+		       
+                                   if(flag1==0)
+		       cout<<"\nrecord not found";
+		       afile.close();
+		       ofile.close();
+		       afile.open("tsport.dat",ios::in|ios::binary);
+		       ofile.open("sport.dat",ios::out|ios::binary);
+		       while(afile)
+		       {
+				afile.read((char*)&s,sizeof(sports));
+				ofile.write((char*)&s,sizeof(sports));
+		       }
+		       afile.close();
+		       ofile.close();
+		       break;
+
+		case 3: exit(1);
+
+    }
+    cout<<"\nDo u want to continue";
+    cin>>ch1;
+    }while(ch1=='y'||ch1=='Y');
+  
+  getch();
+ }
